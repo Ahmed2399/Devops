@@ -4,24 +4,42 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Checkout your source code from your version control system
                 checkout scm
             }
         }
 
         stage('Build') {
             steps {
-                // Build your Spring Boot application using Maven with custom logging properties
-                sh 'mvn clean install -Djava.util.logging.config.file=src/test/resources/logging.properties'
+                script {
+                    // Set the MAVEN_HOME environment variable
+                    def mvnHome = tool name: 'Maven', type: 'hudson.tasks.Maven$MavenInstallation'
+                    def mvn = "${mvnHome}/bin/mvn"
+
+                    // Clean and install your project
+                    sh "${mvn} clean install"
+                }
             }
         }
 
         stage('Unit Tests') {
             steps {
-                // Run unit tests using Maven with custom logging properties
-                sh 'mvn test -Djava.util.logging.config.file=src/test/resources/logging.properties'
+                script {
+                    // Set the MAVEN_HOME environment variable
+                    def mvnHome = tool name: 'Maven', type: 'hudson.tasks.Maven$MavenInstallation'
+                    def mvn = "${mvnHome}/bin/mvn"
+
+                    // Run unit tests
+                    sh "${mvn} test"
+                }
             }
         }
+    }
 
-        // Add more stages for deployment, reporting, etc.
+    post {
+        always {
+            // Archive test results and other artifacts if needed
+            junit '**/target/surefire-reports/TEST-*.xml'
+        }
     }
 }
