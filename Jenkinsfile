@@ -11,16 +11,14 @@ pipeline {
         stage('Build') {
             steps {
                 // Build your Spring Boot application using Maven
-                // Example: mvn clean install
-                sh 'mvn clean install'
+                sh 'mvn clean install --illegal-access=permit'
             }
         }
 
         stage('Unit Tests') {
             steps {
-                // Run unit tests using Maven
-                // Example: mvn test
-                sh 'mvn test'
+                // Run unit tests using Maven with the --illegal-access flag
+                sh 'mvn test --illegal-access=permit'
             }
         }
 
