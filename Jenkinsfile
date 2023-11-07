@@ -4,40 +4,31 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your source code from your version control system
+                // Check out the source code from your repository
                 checkout scm
             }
         }
-        stage('Build Backend') {
+
+        stage('Install Dependencies') {
             steps {
-                // Change to the Spring Boot project directory
-                dir('DevOps_Project-20231016T100739Z-001/DevOps_Project') {
-                    // Use Maven to build the application
-                    sh 'mvn clean package'
-                }
+                // Use Node.js and npm installed on the Jenkins agent
+                sh 'npm install'
             }
         }
 
-      stage('Build Angular Frontend') {
-        steps {
-            script {
-                // Set the PATH to include the directory where npm and node are installed
-                def nodeBin = tool 'NodeJS' // Replace with the actual tool name
-                def nodePath = "${nodeBin}/bin"
-                env.PATH = "${nodePath}:${env.PATH}"
-        
-                // Navigate to the Angular project directory
-                dir('DevOps_Project_Front-20231016T100741Z-001/DevOps_Project_Front') {
-                    // Install project dependencies
-                    sh 'npm install'
-        
-                    // Build the Angular application
-                    sh 'ng build --prod'
-                }
+        stage('Build Angular App') {
+            steps {
+                // Build the Angular app
+                sh 'npm run build'
             }
         }
     }
 
-        
+    post {
+        success {
+            // Define post-build actions, if needed
+            // For example, you can archive the build artifacts
+            archiveArtifacts(allowEmptyArchive: true, artifacts: 'dist/**')
+        }
     }
 }
