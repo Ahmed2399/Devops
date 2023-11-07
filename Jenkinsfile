@@ -17,7 +17,7 @@ pipeline {
                     def mvn = "${mvnHome}/bin/mvn"
 
                     // Clean and install your project
-                    sh "${mvn} clean install"
+                    sh "${mvn} clean package"
                 }
             }
         }
