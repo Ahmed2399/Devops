@@ -8,6 +8,7 @@ pipeline {
                 checkout scm
             }
         }
+        /*
         stage('Build Backend') {
             steps {
                 // Change to the Spring Boot project directory
@@ -37,7 +38,7 @@ pipeline {
             }
         }
     }
-
+*/
                 stage('Deploy to Nexus') {
                 steps {
         dir('DevOps_Project-20231016T100739Z-001/DevOps_Project'){
