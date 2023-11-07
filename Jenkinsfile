@@ -44,11 +44,12 @@ pipeline {
             }
         }
     }
-*/
+
     post {
         always {
             // Archive test results and other artifacts if needed
             junit '**/target/surefire-reports/TEST-*.xml'
         }
     }
+*/
 }
