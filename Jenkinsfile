@@ -18,5 +18,34 @@ pipeline {
             }
         }
 
+      stage('Build Angular Frontend') {
+        steps {
+            script {
+                // Set the PATH to include the directory where npm and node are installed
+                def nodeBin = tool 'NodeJS' // Replace with the actual tool name
+                def nodePath = "${nodeBin}/bin"
+                env.PATH = "${nodePath}:${env.PATH}"
+        
+                // Navigate to the Angular project directory
+                dir('DevOps_Project_Front-20231016T100741Z-001/DevOps_Project_Front') {
+                    // Install project dependencies
+                    sh 'npm install'
+        
+                    // Build the Angular application
+                    sh 'npm run build'
+                }
+            }
+        }
+    }
+
+                stage('Deploy to Nexus') {
+                steps {
+        dir('DevOps_Project-20231016T100739Z-001/DevOps_Project'){
+            sh 'mvn deploy -DskipTests'
+                }        
+    }
+}
+
+        
     }
 }
