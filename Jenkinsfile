@@ -10,15 +10,15 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Build your Spring Boot application using Maven
-                sh 'mvn clean install --illegal-access=permit'
+                // Build your Spring Boot application using Maven with custom logging properties
+                sh 'mvn clean install -Djava.util.logging.config.file=src/test/resources/logging.properties'
             }
         }
 
         stage('Unit Tests') {
             steps {
-                // Run unit tests using Maven with the --illegal-access flag
-                sh 'mvn test --illegal-access=permit'
+                // Run unit tests using Maven with custom logging properties
+                sh 'mvn test -Djava.util.logging.config.file=src/test/resources/logging.properties'
             }
         }
 
