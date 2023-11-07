@@ -4,24 +4,19 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Checkout your source code from your version control system
                 checkout scm
             }
         }
-
-        stage('Build') {
+        stage('Build Backend') {
             steps {
-                // Build your Spring Boot application using Maven with custom logging properties
-                sh 'mvn clean install -Djava.util.logging.config.file=src/test/resources/logging.properties'
+                // Change to the Spring Boot project directory
+                dir('DevOps_Project-20231016T100739Z-001/DevOps_Project') {
+                    // Use Maven to build the application
+                    sh 'mvn clean package'
+                }
             }
         }
 
-        stage('Unit Tests') {
-            steps {
-                // Run unit tests using Maven with custom logging properties
-                sh 'mvn test -Djava.util.logging.config.file=src/test/resources/logging.properties'
-            }
-        }
-
-        // Add more stages for deployment, reporting, etc.
     }
 }
