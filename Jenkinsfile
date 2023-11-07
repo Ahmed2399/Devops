@@ -18,8 +18,11 @@ pipeline {
 
         stage('Build Angular App') {
             steps {
-                // Build the Angular app
+                dir('DevOps_Project_Front-20231016T100741Z-001/DevOps_Project_Front') {
+                    // Build the Angular app
                 sh 'npm run build'
+                }
+                
             }
         }
     }
