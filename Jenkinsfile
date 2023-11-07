@@ -8,9 +8,19 @@ pipeline {
             }
         }
 
-        stage('Build and Test') {
+        stage('Build') {
             steps {
-                sh 'mvn clean test'  // Use 'gradle test' if you're using Gradle
+                // Build your Spring Boot application using Maven
+                // Example: mvn clean install
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Unit Tests') {
+            steps {
+                // Run unit tests using Maven
+                // Example: mvn test
+                sh 'mvn test'
             }
         }
 
