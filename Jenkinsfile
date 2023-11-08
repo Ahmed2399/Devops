@@ -59,8 +59,8 @@ pipeline {
 
         stage('Grafana/prometheus') {
             steps {
-                sh 'docker start 832f8e6f3437'
                 sh 'docker start aa06bbd2838f'
+                sh 'docker start 832f8e6f3437'
             }
         }
         
