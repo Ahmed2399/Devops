@@ -38,7 +38,7 @@ pipeline {
             }
         }
     }
-*/
+
                 stage('Deploy to Nexus') {
                 steps {
         dir('DevOps_Project-20231016T100739Z-001/DevOps_Project'){
@@ -46,7 +46,17 @@ pipeline {
                 }        
     }
 }
-
+*/
+        tage('SonarQube Analysis') {
+            steps {
+                          dir('back') {
+                    // Use Maven to build the application
+                      sh 'mvn sonar:sonar -Dsonar.login=squ_cdf1e27b6ae375e378a47e6ef724dcfde408d870'
+                }
+             
+            }
+        }
+        
         
     }
 }
