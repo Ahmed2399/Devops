@@ -47,7 +47,7 @@ pipeline {
     }
 }
 */
-        tage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
             steps {
                           dir('DevOps_Project-20231016T100739Z-001/DevOps_Project') {
                     // Use Maven to build the application
