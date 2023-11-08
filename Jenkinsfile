@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-   /*     stage('Checkout') {
+       stage('Checkout') {
             steps {
                 // Checkout your source code from your version control system
                 checkout scm
@@ -77,8 +77,8 @@ pipeline {
                 sh 'docker start 832f8e6f3437'
             }
         }
-*/
 
+/* 
         stage('Build and Push Backend Image') {
              steps {
                   script {
@@ -93,6 +93,6 @@ pipeline {
                 }
          }
 
-        
+        */
     }
 }
