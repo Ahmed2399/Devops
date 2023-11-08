@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        MAVEN_SETTINGS = credentials('deploymentRepo')
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -53,7 +49,6 @@ pipeline {
                 steps {
         dir('DevOps_Project-20231016T100739Z-001/DevOps_Project'){
             sh 'mvn deploy'
-            sh "mvn clean install deploy -s $MAVEN_SETTINGS"
                 }  
                    
     }
