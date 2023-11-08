@@ -8,7 +8,13 @@ pipeline {
                 checkout scm
             }
         }
-        
+        stage('Unit Tests') {
+            steps {
+                dir ('DevOps_Project-20231016T100739Z-001/DevOps_Project'){
+                    sh 'mvn test'
+                }
+            }
+        }
         stage('Build Backend') {
             steps {
                 // Change to the Spring Boot project directory
