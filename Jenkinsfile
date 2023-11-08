@@ -49,9 +49,9 @@ pipeline {
 */
         tage('SonarQube Analysis') {
             steps {
-                          dir('back') {
+                          dir('DevOps_Project-20231016T100739Z-001/DevOps_Project') {
                     // Use Maven to build the application
-                      sh 'mvn sonar:sonar -Dsonar.login=squ_cdf1e27b6ae375e378a47e6ef724dcfde408d870'
+                      sh 'mvn sonar:sonar -Dsonar.login=squ_ca01c13a30cd1f5079b299154c3d349eb238fa4d'
                 }
              
             }
