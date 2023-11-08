@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+   /*     stage('Checkout') {
             steps {
                 // Checkout your source code from your version control system
                 checkout scm
@@ -77,6 +77,22 @@ pipeline {
                 sh 'docker start 832f8e6f3437'
             }
         }
+*/
+
+        stage('Build and Push Backend Image') {
+             steps {
+                  script {
+                    dir('DevOps_Project-20231016T100739Z-001/DevOps_Project') {
+                            sh "docker login -u bouakroucha -p dckr_pat_2K37V8hZv0EnZ6AU8YMixrSlZuw"
+                            // Build your Docker image
+                            sh "docker build -t ahmed/devopsbackendproject:1.0 ."
+                            // Push the image
+                            sh "docker push ahmed/devopsbackendproject:1.0"
+                        }
+                    }
+                }
+         }
+
         
     }
 }
