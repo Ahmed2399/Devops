@@ -68,7 +68,7 @@
     </distributionManagement>
 <servers>
     <server>
-        <id>deploymentRepoo</id>
+        <id>deploymentRepo</id>
         <username>admin</username>
         <password>Mino1999</password>
     </server>
